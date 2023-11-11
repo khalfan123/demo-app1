@@ -6,20 +6,23 @@ pipeline {
             steps {
                 script {
                     // Build Docker image using Dockerfile
-                    sh 'docker build -t demo-app1 .'
+                    def dockerImage = docker.build('demo-app1', '-f ./Dockerfile .')
+
+                    // Tag the built image
+                    dockerImage.tag('demo-app1:latest')
                 }
             }
         }
 
-        // stage('Run Docker Container') {
-        //     steps {
-        //         script {
-        //             // Run Docker container from the built image on port 80
-        //             docker.image('demo-app1:latest').withRun('-p 80:80') {
-        //                 // Perform any additional steps inside the running container if needed
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    // Run Docker container from the built image on port 80
+                    docker.image('demo-app1:latest').withRun('-p 80:80') {
+                        // Perform any additional steps inside the running container if needed
+                    }
+                }
+            }
+        }
     }
 }
