@@ -15,7 +15,8 @@ pipeline {
             steps {
                 script {
                     // Check if the container exists by name and stop it
-                    sh "docker ps -aq --filter 'name=demo-app1-container' | xargs docker kill || true"
+                    def containerId = sh(script: "docker ps -aq --filter 'name=app1-container'", returnStdout: true).trim()
+                    sh "docker rm -f ${containerId}"
                 }
             }
         }
