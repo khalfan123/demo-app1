@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image using Dockerfile
-                    docker.build('777229646641.dkr.ecr.us-east-1.amazonaws.com/demo-${BUILD_TAG}:${BUILD_NUMBER}', '-f ./Dockerfile .')
+                    docker.build('777229646641.dkr.ecr.us-east-1.amazonaws.com/demo-app1:${BUILD_TAG}', '-f ./Dockerfile .')
                 }
             }
         }
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     // Run Docker container from the built image on port 80
-                    sh 'docker run -d -p 80:80 777229646641.dkr.ecr.us-east-1.amazonaws.com/demo-${BUILD_TAG}:${BUILD_NUMBER}'
+                    sh 'docker run -d -p 80:80 777229646641.dkr.ecr.us-east-1.amazonaws.com/demo-app1:${BUILD_TAG}'
                 }
             }
         }
