@@ -6,10 +6,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image using Dockerfile
-                    def dockerImage = docker.build('demo-app1', '-f ./Dockerfile .')
-
-                    // Tag the built image
-                    dockerImage.tag('777229646641.dkr.ecr.us-east-1.amazonaws.com/demo-app1:latest')
+                    docker.build('777229646641.dkr.ecr.us-east-1.amazonaws.com/demo-app1', '-f ./Dockerfile .')
                 }
             }
         }
