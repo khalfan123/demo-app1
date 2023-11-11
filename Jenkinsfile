@@ -14,9 +14,12 @@ pipeline {
         stage('Stop Existing Container') {
             steps {
                 script {
-                    // Check if the container exists by name and stop it
                     def containerId = sh(script: "docker ps -aq --filter 'name=demo-app1-container'", returnStdout: true).trim()
-                    sh "docker rm -f ${containerId}"
+                    if (containerId) {
+                        sh "docker rm -f ${containerId}"
+                    } else {
+                        echo "No existing container found."
+                    }
                 }
             }
         }
