@@ -9,7 +9,7 @@ pipeline {
                     def dockerImage = docker.build('demo-app1', '-f ./Dockerfile .')
 
                     // Tag the built image
-                    dockerImage.tag('demo-app1:latest')
+                    // dockerImage.tag('demo-app1:latest')
                 }
             }
         }
