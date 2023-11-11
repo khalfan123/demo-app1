@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     // Run Docker container from the built image on port 80
-                    sh 'docker run -d -p 80:80 777229646641.dkr.ecr.us-east-1.amazonaws.com/demo-app1:latest:latest'
+                    sh 'docker run -d -p 80:80 777229646641.dkr.ecr.us-east-1.amazonaws.com/demo-app1:latest'
                 }
             }
         }
